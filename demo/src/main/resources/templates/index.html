@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+</head>
+<body>
+<h1>Tasks</h1>
+
+<!-- Form for adding new tasks -->
+<form action="/add" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+    <br>
+
+    <label for="deadline">Deadline:</label>
+    <input type="text" id="deadline" name="deadline" required>
+    <br>
+
+    <input type="submit" value="Add Task">
+</form>
+
+<h2>List of Tasks</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over tasks using Thymeleaf -->
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.name}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.deadline}"></td>
+        <td th:text="${task.status ? 'Done' : 'Not Done'}"></td>
+        <td>
+            <!-- Update status link -->
+            <a th:href="@{/update/{id}(id=${task.id})}">Toggle Status</a>
+            <!-- Delete link -->
+            <a th:href="@{/delete/{id}(id=${task.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
