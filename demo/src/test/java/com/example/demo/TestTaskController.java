@@ -67,7 +67,6 @@ public class TestTaskController {
 
         mockMvc.perform(post("/add")
                                 .param("id", testTask.getId().toString())
-                        // Add other params here depending on your Task's fields
                 )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
