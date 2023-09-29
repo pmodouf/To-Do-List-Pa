@@ -17,13 +17,14 @@ public class Task {
 
   public Task() {}
 
-  public Task(Long id, String name, String description, String deadline, boolean status) {
-    this.id = id;
+
+  public Task(String name, String description, String deadline, boolean status) {
     this.name = name;
     this.description = description;
     this.deadline = deadline;
     this.status = status;
   }
+
 
   public Long getId() {
     return id;
@@ -57,7 +58,7 @@ public class Task {
     this.deadline = deadline;
   }
 
-  public boolean isStatus() {
+  public boolean getStatus() {
     return status;
   }
 

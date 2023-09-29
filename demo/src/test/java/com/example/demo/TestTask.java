@@ -24,4 +24,20 @@ public class TestTask {
     task.setDeadline("deadline");
     assert(task.getDeadline().equals("deadline"));
   }
+
+  @Test
+  public void testGetName(){
+    Task task = new Task();
+    task.setName("name");
+    assert(task.getName().equals("name"));
+  }
+
+  @Test
+  public void testGetStatus(){
+    Task task = new Task();
+    task.setStatus(true);
+    assert(task.getStatus() == true);
+  }
+
+
 }

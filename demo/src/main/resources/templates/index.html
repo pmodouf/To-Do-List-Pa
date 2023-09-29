@@ -1,55 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Länka till din CSS-fil här -->
 </head>
 <body>
-<h1>Tasks</h1>
 
-<!-- Form for adding new tasks -->
-<form action="/add" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <br>
+<div class="container">
+    <h1>Tasks</h1>
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea>
-    <br>
+    <!-- Lista över uppgifter -->
+    <div class="tasks-list">
+        <!-- För varje uppgift i din lista, lägg till en .task-div här -->
+        <div class="task">
+            <div>
+                <strong>Task Name</strong><br>
+                <span>Description here...</span><br>
+                <span>Deadline: Date here...</span>
+            </div>
+            <button class="delete">Delete</button>
+        </div>
+        <!-- Slut på exempeluppgift -->
+    </div>
 
-    <label for="deadline">Deadline:</label>
-    <input type="text" id="deadline" name="deadline" required>
-    <br>
+    <!-- Form för att lägga till ny uppgift -->
+    <form action="/add" method="post">
+        <label for="taskName">Task Name:</label>
+        <input type="text" id="taskName" name="name"><br><br>
 
-    <input type="submit" value="Add Task">
-</form>
+        <label for="taskDescription">Description:</label>
+        <textarea id="taskDescription" name="description"></textarea><br><br>
 
-<h2>List of Tasks</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Deadline</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iterate over tasks using Thymeleaf -->
-    <tr th:each="task : ${tasks}">
-        <td th:text="${task.name}"></td>
-        <td th:text="${task.description}"></td>
-        <td th:text="${task.deadline}"></td>
-        <td th:text="${task.status ? 'Done' : 'Not Done'}"></td>
-        <td>
-            <!-- Update status link -->
-            <a th:href="@{/update/{id}(id=${task.id})}">Toggle Status</a>
-            <!-- Delete link -->
-            <a th:href="@{/delete/{id}(id=${task.id})}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <label for="taskDeadline">Deadline:</label>
+        <input type="date" id="taskDeadline" name="deadline"><br><br>
+
+        <button class="add" type="submit">Add Task</button>
+    </form>
+</div>
+
 </body>
 </html>
+
