@@ -13,16 +13,17 @@
 
     <!-- Lista över uppgifter -->
     <div class="tasks-list">
-        <!-- För varje uppgift i din lista, lägg till en .task-div här -->
-        <div class="task">
+        <div th:each="task : ${tasks}" class="task">
             <div>
-                <strong>Task Name</strong><br>
-                <span>Description here...</span><br>
-                <span>Deadline: Date here...</span>
+                <strong th:text="${task.name}">Task Name</strong><br>
+                <span th:text="${task.description}">Description here...</span><br>
+                <span th:text="'Deadline: ' + ${task.deadline}">Deadline: Date here...</span>
             </div>
-            <button class="delete">Delete</button>
+            <a th:href="@{/edit/{id}(id=${task.id})}" class="edit">Edit</a>
+            <form th:action="@{/delete/{id}(id=${task.id})}" method="post">
+                <button class="delete" type="submit">Delete</button>
+            </form>
         </div>
-        <!-- Slut på exempeluppgift -->
     </div>
 
     <!-- Form för att lägga till ny uppgift -->
