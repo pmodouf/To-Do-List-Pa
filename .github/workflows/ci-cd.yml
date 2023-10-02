@@ -18,14 +18,16 @@ jobs:
 
       - name: Set permissions for gradlew
         run: |
+          ls -la $GITHUB_WORKSPACE/demo/
           chmod +x $GITHUB_WORKSPACE/demo/gradlew
-          ls -l $GITHUB_WORKSPACE/demo/gradlew
+          ls -la $GITHUB_WORKSPACE/demo/
       
 
       - name: Build Java application
         run: |
           cd demo
-          ./gradlew build
+          sh gradlew build
+  
   
 
   build_and_push:
