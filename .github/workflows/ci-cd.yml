@@ -42,7 +42,7 @@ jobs:
       - name: Build Docker image
         run: |
           IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
-          docker build . -t docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG
+          docker build -t docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG -f /path/to/Dockerfile .
 
       - name: Push Docker image to GitHub Packages
         run: |
@@ -58,3 +58,4 @@ jobs:
         run: |
           IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
           echo "Deploying image docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG"
+
