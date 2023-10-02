@@ -36,10 +36,14 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Build Docker image
-        run: docker build -t docker.pkg.github.com/${{ github.repository }}/min-app:${GITHUB_REF##*/} .
+        run: |
+          IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
+          docker build -t docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG .
 
       - name: Push Docker image to GitHub Packages
-        run: docker push docker.pkg.github.com/${{ github.repository }}/min-app:${GITHUB_REF##*/}
+        run: |
+          IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
+          docker push docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG
 
   fake_deploy:
     needs: build_and_push
@@ -47,4 +51,6 @@ jobs:
 
     steps:
       - name: Fake Deploy to Test Environment
-        run: echo "Deploying image docker.pkg.github.com/${{ github.repository }}/min-app:${GITHUB_REF##*/}"
+        run: |
+          IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
+          echo "Deploying image docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG"
