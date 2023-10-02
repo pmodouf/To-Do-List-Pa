@@ -17,7 +17,10 @@ jobs:
           java-version: '18'
 
       - name: Set permissions for gradlew
-        run: chmod +x demo/gradlew
+        run: |
+          chmod +x $GITHUB_WORKSPACE/demo/gradlew
+          ls -l $GITHUB_WORKSPACE/demo/gradlew
+      
 
       - name: Build Java application
         run: |
