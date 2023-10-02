@@ -17,10 +17,13 @@ jobs:
           java-version: '18'
 
       - name: Set permissions for gradlew
-        run: chmod +x $GITHUB_WORKSPACE/demo/gradlew
+        run: chmod +x demo/gradlew
 
       - name: Build Java application
-        run: $GITHUB_WORKSPACE/demo/gradlew build
+        run: |
+          cd demo
+          ./gradlew build
+  
 
   build_and_push:
     needs: unit_tests
@@ -30,11 +33,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set permissions for gradlew (optional if permissions have been set in the repo)
-        run: chmod +x $GITHUB_WORKSPACE/demo/gradlew
-
       - name: Build Java application
-        run: $GITHUB_WORKSPACE/demo/gradlew build
+        run: |
+          cd demo
+          ./gradlew build
 
       - name: Login to GitHub Packages Docker registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
@@ -58,3 +60,4 @@ jobs:
         run: |
           IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
           echo "Deploying image docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG"
+
