@@ -16,6 +16,9 @@ jobs:
           distribution: 'adopt'
           java-version: '18'
 
+      - name: Set permissions for gradlew
+        run: chmod +x demo/gradlew
+
       - name: Run unit tests
         run: |
           cd demo
