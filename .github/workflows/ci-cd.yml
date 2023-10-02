@@ -22,11 +22,11 @@ jobs:
 
       - name: Build Java application
         run: |
-          cd demo
+          cd $GITHUB_WORKSPACE/demo
           ./gradlew build
 
       - name: List the contents of the build directory
-        run: ls -la demo/build/libs/
+        run: ls -la $GITHUB_WORKSPACE/demo/build/libs/
 
   build_and_push:
     needs: unit_tests
