@@ -18,15 +18,15 @@ jobs:
 
       - name: Set permissions for gradlew
         run: |
-          chmod +x $GITHUB_WORKSPACE/demo/gradlew
+          chmod +x demo/gradlew
 
       - name: Build Java application
         run: |
-          cd $GITHUB_WORKSPACE/demo
+          cd demo
           ./gradlew build
 
       - name: List the contents of the build directory
-        run: ls -la $GITHUB_WORKSPACE/demo/build/libs/
+        run: ls -la demo/build/libs/
 
   build_and_push:
     needs: unit_tests
