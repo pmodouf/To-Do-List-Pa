@@ -19,10 +19,11 @@ jobs:
       - name: Set permissions for gradlew
         run: chmod +x demo/gradlew
 
-      - name: Run unit tests
+      - name: Build Java application
         run: |
           cd demo
-          ./gradlew test
+          ./gradlew build
+  
 
   build_and_push:
     needs: unit_tests
