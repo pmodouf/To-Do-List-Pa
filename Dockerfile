@@ -1,11 +1,11 @@
-# Använd en officiell Java-basbild
+# Använd en basbild med Java 17
 FROM openjdk:17-jdk
 
-# Ange arbetsmapp i containern
+# Ange arbetskatalogen inuti containern
 WORKDIR /app
 
 # Kopiera JAR-filen från din lokala katalog till containern
-COPY /Users/dimazz/Desktop/To-Do-List-Grupp-7/demo/build/libs/demo-0.0.1-SNAPSHOT.jar demo-0.0.1-SNAPSHOT.jar
+COPY demo-0.0.1-SNAPSHOT.jar /app/demo-0.0.1-SNAPSHOT.jar
 
 # Sätt kommandot för att köra din Java-applikation
-ENTRYPOINT ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar"]
