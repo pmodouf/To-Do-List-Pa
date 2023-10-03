@@ -1,1 +1,1 @@
-Conflict ändring
+Conflict ändring i README.md
