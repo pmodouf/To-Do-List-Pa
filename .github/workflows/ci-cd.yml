@@ -19,7 +19,6 @@ jobs:
       - name: Set permissions for gradlew
         run: |
           chmod +x demo/gradlew
-      
 
       - name: Build Java application
         run: |
@@ -43,27 +42,19 @@ jobs:
       - name: Build Docker image
         run: |
           IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
-          docker build -t docker.pkg.github.com/pmodouf/to-do-list-grupp-7/min-app:$IMAGE_TAG -f Dockerfile .
+          docker build -t docker.pkg.github.com/pmodouf/To-Do-List-Pa/min-app:$IMAGE_TAG -f Dockerfile .
 
       - name: Push Docker image to GitHub Packages
-        run:  IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
-              docker push docker.pkg.github.com/pmodouf/to-do-list-grupp-7/min-app:$IMAGE_TAG
+        run: |
+          IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
+          docker push docker.pkg.github.com/pmodouf/To-Do-List-Pa/min-app:$IMAGE_TAG
 
   fake_deploy:
     needs: build_and_push
     runs-on: ubuntu-latest
 
     steps:
-      - name: Simulate Deployment to Test Environment
+      - name: Fake Deploy to Test Environment
         run: |
           IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
-          docker run -d -p 8080:8080 docker.pkg.github.com/pmodouf/to-do-list-grupp-7/min-app:$IMAGE_TAG
-
-      - name: Print Deployment Information
-        run: |
-          IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
-          echo "Deployed image docker.pkg.github.com/pmodouf/to-do-list-grupp-7/min-app:$IMAGE_TAG to test environment."
-  
-
-          
-
+          echo "Deploying image docker.pkg.github.com/pmodouf/To-Do-List-Pa/min-app:$IMAGE_TAG"

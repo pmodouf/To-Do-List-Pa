@@ -14,8 +14,7 @@ public class Task {
   private String description;
   private String deadline;
   private boolean status;
-//Hejhej
-
+//  private String status;
   public Task() {}
 
 
