@@ -19,6 +19,7 @@ jobs:
       - name: Set permissions for gradlew
         run: |
           chmod +x demo/gradlew
+      
 
       - name: Build Java application
         run: |
@@ -54,8 +55,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Fake Deploy to Test Environment
+      - name: Simulate Deployment to Test Environment
         run: |
           IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
-          echo "Deploying image docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG"
+          docker run -d -p 8080:8080 docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG
+
+      - name: Print Deployment Information
+        run: |
+          IMAGE_TAG=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
+          echo "Deployed image docker.pkg.github.com/jesperschon/to-do-list-grupp-7/min-app:$IMAGE_TAG to test environment."
+  
+
+          
 
