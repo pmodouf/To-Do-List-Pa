@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 public class TestTask {
 
   @Test
+  public void testThatSucceds(){
+    assert(true);
+  }
+
+  @Test
   public void testGetId(){
     Task task = new Task();
     task.setId(1L);

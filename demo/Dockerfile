@@ -5,8 +5,10 @@ FROM openjdk:17-jdk
 WORKDIR /app
 
 # Kopiera hela demo-mappen till containern
-COPY demo /app/demo
+COPY . .
 
 # Sätt kommandot för att köra din Java-applikation
 CMD ["java", "-jar", "/app/demo/build/libs/demo-0.0.1-SNAPSHOT.jar"]
+
+
 
