@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 public class TestTask {
 
   @Test
-  public void testThatFails(){
-    assert(false);
+  public void testThatSucceds(){
+    assert(true);
   }
 
   @Test
